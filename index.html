@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostel Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Hostel Management System</h1>
+    <p>Students, rooms, bookings and fees in one place</p>
+  </header>
+
+  <!-- Tabs -->
+  <nav id="tabs">
+    <button class="tab active" data-tab="dashboard">Dashboard</button>
+    <button class="tab" data-tab="students">Students</button>
+    <button class="tab" data-tab="rooms">Rooms</button>
+    <button class="tab" data-tab="bookings">Room Booking</button>
+    <button class="tab" data-tab="fees">Fees</button>
+  </nav>
+
+  <!-- Success / error message -->
+  <div id="message" hidden></div>
+
+  <main>
+    <!-- ===== Dashboard ===== -->
+    <section id="tab-dashboard" class="panel">
+      <div class="stats">
+        <div class="stat"><span id="stat-students">0</span><label>Students</label></div>
+        <div class="stat"><span id="stat-rooms">0</span><label>Rooms</label></div>
+        <div class="stat"><span id="stat-beds">0</span><label>Total Beds</label></div>
+        <div class="stat"><span id="stat-occupied">0</span><label>Occupied Beds</label></div>
+        <div class="stat good"><span id="stat-available">0</span><label>Available Beds</label></div>
+        <div class="stat"><span id="stat-fees">0</span><label>Fees Collected</label></div>
+      </div>
+    </section>
+
+    <!-- ===== Students ===== -->
+    <section id="tab-students" class="panel" hidden>
+      <div class="card">
+        <h2>Add Student</h2>
+        <form id="student-form">
+          <input id="s-name" type="text" placeholder="Full name" required />
+          <input id="s-roll" type="text" placeholder="Roll number" required />
+          <input id="s-phone" type="text" placeholder="Phone" required />
+          <input id="s-dept" type="text" placeholder="Department" required />
+          <button type="submit">Add Student</button>
+        </form>
+      </div>
+      <div class="card">
+        <h2>Student Record</h2>
+        <table>
+          <thead>
+            <tr><th>Roll No</th><th>Name</th><th>Phone</th><th>Department</th><th>Room</th><th></th></tr>
+          </thead>
+          <tbody id="students-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Rooms ===== -->
+    <section id="tab-rooms" class="panel" hidden>
+      <div class="card">
+        <h2>Add Room</h2>
+        <form id="room-form">
+          <input id="r-no" type="text" placeholder="Room number (e.g. A-101)" required />
+          <input id="r-cap" type="number" min="1" placeholder="Capacity (beds)" required />
+          <input id="r-rent" type="number" min="0" placeholder="Monthly rent" required />
+          <button type="submit">Add Room</button>
+        </form>
+      </div>
+      <div class="card">
+        <h2>Room Availability</h2>
+        <table>
+          <thead>
+            <tr><th>Room</th><th>Capacity</th><th>Occupied</th><th>Available</th><th>Rent / month</th><th>Status</th><th></th></tr>
+          </thead>
+          <tbody id="rooms-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Bookings ===== -->
+    <section id="tab-bookings" class="panel" hidden>
+      <div class="card">
+        <h2>Book a Room</h2>
+        <form id="booking-form">
+          <select id="b-student" required></select>
+          <select id="b-room" required></select>
+          <button type="submit">Book Room</button>
+        </form>
+        <p class="hint">Only students without a room and rooms with a free bed are shown.</p>
+      </div>
+      <div class="card">
+        <h2>Booking Record</h2>
+        <table>
+          <thead>
+            <tr><th>Student</th><th>Roll No</th><th>Room</th><th>Check-in</th><th>Check-out</th><th></th></tr>
+          </thead>
+          <tbody id="bookings-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Fees ===== -->
+    <section id="tab-fees" class="panel" hidden>
+      <div class="card">
+        <h2>Record Fee Payment</h2>
+        <form id="fee-form">
+          <select id="f-student" required></select>
+          <input id="f-month" type="month" required />
+          <input id="f-amount" type="number" min="1" placeholder="Amount" required />
+          <button type="submit">Save Payment</button>
+        </form>
+        <p class="hint">The amount is filled in from the student's room rent. You can change it.</p>
+      </div>
+      <div class="card">
+        <h2>Fee Record</h2>
+        <table>
+          <thead>
+            <tr><th>Student</th><th>Roll No</th><th>Month</th><th>Amount</th><th>Paid on</th><th></th></tr>
+          </thead>
+          <tbody id="fees-table"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

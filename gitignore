@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Database file (created automatically when the app runs)
+*.db
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
